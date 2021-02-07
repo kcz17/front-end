@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/microservices-demo/front-end.svg?branch=master)](https://travis-ci.org/microservices-demo/front-end)
-[![](https://images.microbadger.com/badges/image/weaveworksdemos/front-end.svg)](http://microbadger.com/images/weaveworksdemos/front-end "Get your own image badge on microbadger.com")
-[![Actions Status](https://github.com/microservices-demo/front-end/workflows/ci/badge.svg)](https://github.com/microservices-demo/front-end/workflows/ci/badge.svg)
+[![](https://images.microbadger.com/badges/image/kcz17/front-end.svg)](http://microbadger.com/images/kcz17/front-end "Get your own image badge on microbadger.com")
 
 
 Front-end app
