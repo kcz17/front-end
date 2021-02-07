@@ -186,42 +186,42 @@ _________________________________________________________ -->
 <script src="js/client.js"></script>
 <script>
 
-    $(document).ready(function () {
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
+  $(document).ready(function() {
+    $.ajaxSetup({
+      contentType: 'application/json; charset=utf-8',
+    });
 
-        console.log("Loading components for category.html");
-        $("#topbar").load("topbar.html");
-        $("#navbar").load("navbar.html");
-        $("#footer").load("footer.html");
+    console.log('Loading components for category.html');
+    $('#topbar').load('topbar.html');
+    $('#navbar').load('navbar.html');
+    $('#footer').load('footer.html');
 
-        var id = $.query.get('id') ? $.query.get('id') : "";
-        if (id == null || id == "") {
-            document.location.href = "/";
-        }
-        $.getJSON('/catalogue/' + id, function (data) {
-            $("#title").text(data.name);
-            $("#breadcrumb").text(data.name);
-            $("#price").text("$" + data.price.toFixed(2));
-            $("#imageMain").attr("src", data.imageUrl[0]);
-            $("#buttonCart").attr("onClick", "addToCart(\'" + data.id + "\')");
-            var thumbHtml = "";
-            for (var i = 0; i < data.imageUrl.length; i++) {
-                thumbHtml = thumbHtml +
-                        '<div class="col-xs-4">\
-                            <a href="' + data.imageUrl[i] + '" class="thumb">\
+    var id = $.query.get('id') ? $.query.get('id') : '';
+    if (id == null || id == '') {
+      document.location.href = '/';
+    }
+    $.getJSON('/catalogue/' + id, function(data) {
+      $('#title').text(data.name);
+      $('#breadcrumb').text(data.name);
+      $('#price').text('$' + data.price.toFixed(2));
+      $('#imageMain').attr('src', data.imageUrl[0]);
+      $('#buttonCart').attr('onClick', 'addToCart(\'' + data.id + '\')');
+      var thumbHtml = '';
+      for (var i = 0; i < data.imageUrl.length; i++) {
+        thumbHtml = thumbHtml +
+            '<div class="col-xs-4">\
+                <a href="' + data.imageUrl[i] + '" class="thumb">\
                     <img src="' + data.imageUrl[i] + '" alt="" class="img-responsive">\
                     </a>\
-                </div>'
-            }
-            $("#thumbs").append(thumbHtml);
-            $("#description").text(data.description);
+                </div>';
+      }
+      $('#thumbs').append(thumbHtml);
+      $('#description').text(data.description);
 
-            $.getJSON('/catalogue', {sort: "id", size: 3, tags: data.tag[0]}, function (data) {
-                if (data != null) {
-                    $.each(data, function (index, element) {
-                        $('#products').append('<div class="col-md-3 col-sm-4">\
+      $.getJSON('/catalogue', {sort: 'id', size: 3, tags: data.tag[0]}, function(data) {
+        if (data != null) {
+          $.each(data, function(index, element) {
+            $('#products').append('<div class="col-md-3 col-sm-4">\
                             <div class="product same-height">\
                                     <div class="flip-container">\
                                         <div class="flipper">\
@@ -250,17 +250,12 @@ _________________________________________________________ -->
                                     </div>\
                                 </div>\
                             </div>');
-                    });
-                }
-            });
-        });
-
-
-
-
-
-
+          });
+        }
+      });
     });
+
+  });
 
 </script>
 

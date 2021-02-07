@@ -70,7 +70,8 @@ _________________________________________________________ -->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">&times;</button>
+                            aria-hidden="true">&times;
+                    </button>
                     <h4 class="modal-title" id="Login">Customer login</h4>
                 </div>
                 <div class="modal-body">
@@ -467,7 +468,7 @@ _________________________________________________________ -->
                 <div class="input-group">
                     <input type="text" class="form-control"
                            placeholder="Search">
-                        <span class="input-group-btn">
+                    <span class="input-group-btn">
 
 			<button type="submit" class="btn btn-primary"><i
                     class="fa fa-search"></i></button>
@@ -670,7 +671,6 @@ _________________________________________________________ -->
     <!-- /#content -->
 
 
-
 </div>
 <!-- /#all -->
 
@@ -689,16 +689,16 @@ _________________________________________________________ -->
 <script src="js/client.js"></script>
 <script>
 
-    $(document).ready(function () {
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
+  $(document).ready(function() {
+    $.ajaxSetup({
+      contentType: 'application/json; charset=utf-8',
+    });
 
-        console.log("Loading components for category.html");
-        $("#topbar").load("topbar.html");
-        $("#navbar").load("navbar.html");
-        $("#footer").load("footer.html");
-    })
+    console.log('Loading components for category.html');
+    $('#topbar').load('topbar.html');
+    $('#navbar').load('navbar.html');
+    $('#footer').load('footer.html');
+  });
 </script>
 
 </body>

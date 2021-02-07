@@ -164,77 +164,83 @@ _________________________________________________________ -->
 <script src="js/client.js"></script>
 <script>
 
-    $(document).ready(function () {
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
+  $(document).ready(function() {
+    $.ajaxSetup({
+      contentType: 'application/json; charset=utf-8',
+    });
 
-        console.log("Loading components for category.html");
-        $("#topbar").load("topbar.html");
-        $("#navbar").load("navbar.html");
-        $("#footer").load("footer.html");
-    })
+    console.log('Loading components for category.html');
+    $('#topbar').load('topbar.html');
+    $('#navbar').load('navbar.html');
+    $('#footer').load('footer.html');
+  });
 </script>
 <script>
-            $(document).ready(function() {
+  $(document).ready(function() {
 
-                $.ajaxSetup({
-                    contentType: "application/json; charset=utf-8"
-                });
-		var baseSize = 3;
-                var size = $.query.get('size') ? $.query.get('size') : 6;
-                var page = $.query.get('page') ? $.query.get('page') : 1;
-                var tags = $.query.get('tags') ? $.query.get('tags') : "";
+    $.ajaxSetup({
+      contentType: 'application/json; charset=utf-8',
+    });
+    var baseSize = 3;
+    var size = $.query.get('size') ? $.query.get('size') : 6;
+    var page = $.query.get('page') ? $.query.get('page') : 1;
+    var tags = $.query.get('tags') ? $.query.get('tags') : '';
 
-                $.getJSON('/catalogue/size', {tags: tags}, function (data) {
-		    if (data.size <= size) {
-			size = data.size;
-			}
-                    $('#totalProducts').append('Showing <strong>' + size + '</strong> of <strong>' + data.size + '</strong> products');
-                    var totalNumPages = Math.ceil(data.size / size);
-                    console.log("Total pages: " + totalNumPages);
-                    var pagination = "";
-                    for (var i = 1; i <= totalNumPages; i++) {
-                        if (page == i) {
-                            pagination = pagination + '<li class="active"><a href="#" onclick=setNewPage(' + i + ')>' + i + '</a></li>';
-                        } else {
-                            pagination = pagination + '<li><a href="#" onclick=setNewPage(' + i + ')>' + i + '</a></li>';
-                        }
-                    }
-                    console.log("Pagination: " + pagination);
-                    $('#pagination').append(pagination);
-		    var pageSize = [];
-                    for (var i = baseSize; i < data.size; i=i+3) {
-                        pageSize.push(i);
-                    }	
-                    pageSize.push(data.size);
-                    var pageSizeHtml = "<strong>Show</strong>"
-                    pageSize.forEach(function (p) {
-                        if (size == p) {
-                            pageSizeHtml = pageSizeHtml + '<a href="#" onclick=setNewPageSize(' + p + ') class="btn btn-primary btn-sm">' + p + '</a>';
-                        } else {
-                            pageSizeHtml = pageSizeHtml + '<a href="#" onclick=setNewPageSize(' + p + ') class="btn btn-default btn-sm">' + p + '</a>';
-                        }
-                    })
-                    $('#products-number').append(pageSizeHtml);
-                });
+    $.getJSON('/catalogue/size', {tags: tags}, function(data) {
+      if (data.size <= size) {
+        size = data.size;
+      }
+      $('#totalProducts').
+          append('Showing <strong>' + size + '</strong> of <strong>' + data.size + '</strong> products');
+      var totalNumPages = Math.ceil(data.size / size);
+      console.log('Total pages: ' + totalNumPages);
+      var pagination = '';
+      for (var i = 1; i <= totalNumPages; i++) {
+        if (page == i) {
+          pagination = pagination + '<li class="active"><a href="#" onclick=setNewPage(' + i + ')>' + i + '</a></li>';
+        } else {
+          pagination = pagination + '<li><a href="#" onclick=setNewPage(' + i + ')>' + i + '</a></li>';
+        }
+      }
+      console.log('Pagination: ' + pagination);
+      $('#pagination').append(pagination);
+      var pageSize = [];
+      for (var i = baseSize; i < data.size; i = i + 3) {
+        pageSize.push(i);
+      }
+      pageSize.push(data.size);
+      var pageSizeHtml = '<strong>Show</strong>';
+      pageSize.forEach(function(p) {
+        if (size == p) {
+          pageSizeHtml = pageSizeHtml + '<a href="#" onclick=setNewPageSize(' + p +
+              ') class="btn btn-primary btn-sm">' + p + '</a>';
+        } else {
+          pageSizeHtml = pageSizeHtml + '<a href="#" onclick=setNewPageSize(' + p +
+              ') class="btn btn-default btn-sm">' + p + '</a>';
+        }
+      });
+      $('#products-number').append(pageSizeHtml);
+    });
 
-                $.getJSON('/tags', function (data) {
-                    $.each(data.tags, function (index, element) {
-                        console.log("Current tags: " + tags);
-                        if (tags != null && tags != "" && tags != true && tags.indexOf(element) > -1) {
-                            $('#filters').append('<div class="checkbox"><label><input type="checkbox" checked="true" value="' + element + '">' + element + '</label></div>');
-                        } else {
-                            $('#filters').append('<div class="checkbox"><label><input type="checkbox" value="' + element + '">' + element + '</label></div>');
-                        }
-                    })
-                });
+    $.getJSON('/tags', function(data) {
+      $.each(data.tags, function(index, element) {
+        console.log('Current tags: ' + tags);
+        if (tags != null && tags != '' && tags != true && tags.indexOf(element) > -1) {
+          $('#filters').
+              append('<div class="checkbox"><label><input type="checkbox" checked="true" value="' + element + '">' +
+                  element + '</label></div>');
+        } else {
+          $('#filters').
+              append('<div class="checkbox"><label><input type="checkbox" value="' + element + '">' + element +
+                  '</label></div>');
+        }
+      });
+    });
 
-
-                $.getJSON('/catalogue', {page: page, size: size, tags: tags}, function (data) {
-                    if (data != null) {
-                        $.each(data, function (index, element) {
-                            $('#products').append('<div class="col-md-4 col-sm-6">\
+    $.getJSON('/catalogue', {page: page, size: size, tags: tags}, function(data) {
+      if (data != null) {
+        $.each(data, function(index, element) {
+          $('#products').append('<div class="col-md-4 col-sm-6">\
                             <div class="product">\
                                     <div class="flip-container">\
                                         <div class="flipper">\
@@ -263,10 +269,10 @@ _________________________________________________________ -->
                                     </div>\
                                 </div>\
                             </div>');
-                        });
-                    }
-                });
-            } );
+        });
+      }
+    });
+  });
 
 </script>
 

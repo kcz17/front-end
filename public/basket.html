@@ -50,7 +50,7 @@
     <div id="content">
         <div class="container">
 
-            <div id="user-message"> </div>
+            <div id="user-message"></div>
 
             <div class="col-md-12">
                 <ul class="breadcrumb">
@@ -124,41 +124,49 @@
                                 </p>
                             </div>
                             <p id="address"></p>
-                            <div class="modal fade" id="address-modal" tabindex="-1" role="dialog" aria-labelledby="address" aria-hidden="true">
+                            <div class="modal fade" id="address-modal" tabindex="-1" role="dialog"
+                                 aria-labelledby="address" aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"
-                                                    aria-hidden="true">&times;</button>
+                                                    aria-hidden="true">&times;
+                                            </button>
                                             <h4 class="modal-title" id="Login">Address</h4>
                                         </div>
                                         <div class="modal-body">
                                             <form action="" id="form-address">
                                                 <div class="form-group">
                                                     <label for="house-number">House Number</label>
-                                                    <input type="text" class="form-control" name="house-number" id="form-number" placeholder="Number">
+                                                    <input type="text" class="form-control" name="house-number"
+                                                           id="form-number" placeholder="Number">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="street">Street Name</label>
-                                                    <input type="text" class="form-control" name="street" id="form-street" placeholder="Street">
+                                                    <input type="text" class="form-control" name="street"
+                                                           id="form-street" placeholder="Street">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="city">City</label>
-                                                    <input type="text" class="form-control" name="city" id="form-city" placeholder="City">
+                                                    <input type="text" class="form-control" name="city" id="form-city"
+                                                           placeholder="City">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="post-code">Post Code</label>
-                                                    <input type="text" class="form-control" name="post-code" id="form-post-code" placeholder="Post Code">
+                                                    <input type="text" class="form-control" name="post-code"
+                                                           id="form-post-code" placeholder="Post Code">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="country">Country</label>
-                                                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Country">
+                                                    <input type="text" class="form-control" name="country"
+                                                           id="form-country" placeholder="Country">
                                                 </div>
-                                                    <p class="text-center">
-                                                        <button class="btn btn-primary" href="#" onclick="return address()"><i
+                                                <p class="text-center">
+                                                    <button class="btn btn-primary" href="#" onclick="return address()">
+                                                        <i
                                                                 class="fa fa-refresh"></i> Update
-                                                        </button>
-                                                    </p>
+                                                    </button>
+                                                </p>
                                             </form>
                                         </div>
                                     </div>
@@ -175,27 +183,32 @@
                                 </p>
                             </div>
                             <p id="number"></p>
-                            <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="card" aria-hidden="true">
+                            <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="card"
+                                 aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"
-                                                    aria-hidden="true">&times;</button>
+                                                    aria-hidden="true">&times;
+                                            </button>
                                             <h4 class="modal-title" id="credit-card">Credit Card</h4>
                                         </div>
                                         <div class="modal-body">
                                             <form action="" id="form-card">
                                                 <div class="form-group">
                                                     <label for="card-number">Card Number</label>
-                                                    <input type="text" class="form-control" name="card-number" id="form-card-number" placeholder="Card Number">
+                                                    <input type="text" class="form-control" name="card-number"
+                                                           id="form-card-number" placeholder="Card Number">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="expires">Expires</label>
-                                                    <input type="text" class="form-control" name="expires" id="form-expires" placeholder="MM/YY">
+                                                    <input type="text" class="form-control" name="expires"
+                                                           id="form-expires" placeholder="MM/YY">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="ccv">CCV</label>
-                                                    <input type="text" class="form-control" name="ccv" id="form-ccv" placeholder="CCV">
+                                                    <input type="text" class="form-control" name="ccv" id="form-ccv"
+                                                           placeholder="CCV">
                                                 </div>
                                             </form>
                                             <p class="text-right">
@@ -269,7 +282,7 @@
 
                             <input type="text" class="form-control">
 
-                                <span class="input-group-btn">
+                            <span class="input-group-btn">
 
 					<button class="btn btn-primary" type="button"><i
                             class="fa fa-gift"></i></button>
@@ -307,71 +320,70 @@ _________________________________________________________ -->
 <script src="js/client.js"></script>
 <script>
 
-    $(document).ready(function () {
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
+  $(document).ready(function() {
+    $.ajaxSetup({
+      contentType: 'application/json; charset=utf-8',
+    });
 
-        console.log("Loading components for basket.html");
-        $("#topbar").load("topbar.html");
-        $("#navbar").load("navbar.html");
-        $("#footer").load("footer.html");
-    })
+    console.log('Loading components for basket.html');
+    $('#topbar').load('topbar.html');
+    $('#navbar').load('navbar.html');
+    $('#footer').load('footer.html');
+  });
 </script>
 <script>
-    function deleteFromCart(id) {
-        console.log("Sending request to delete: " + id);
-        $.ajax({
-            url: "cart/" + id,
-            type: "DELETE",
-            success: function (data, textStatus, jqXHR) {
-                console.log('Item deleted: ' + id + ', ' + textStatus);
-                location.reload();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error('Could not delete item: ' + id + ', due to: ' + textStatus + ' | ' + errorThrown);
-            }
-        });
-    }
+  function deleteFromCart(id) {
+    console.log('Sending request to delete: ' + id);
+    $.ajax({
+      url: 'cart/' + id,
+      type: 'DELETE',
+      success: function(data, textStatus, jqXHR) {
+        console.log('Item deleted: ' + id + ', ' + textStatus);
+        location.reload();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.error('Could not delete item: ' + id + ', due to: ' + textStatus + ' | ' + errorThrown);
+      },
+    });
+  }
 
-    // function updateCart()
-	// for each item row in cart table call updateToCart (client.js - updateToCart(itemId, quantity, callback))
-	function updateCart() {
-		console.log("Updating Cart");
-		var cartsize = document.getElementById("cart-list").rows.length;
-		console.log("cart-list size: " + cartsize);
+  // function updateCart()
+  // for each item row in cart table call updateToCart (client.js - updateToCart(itemId, quantity, callback))
+  function updateCart() {
+    console.log('Updating Cart');
+    var cartsize = document.getElementById('cart-list').rows.length;
+    console.log('cart-list size: ' + cartsize);
 
-		var idx = 0;
-		next = function(){
-			if (idx< cartsize) {
-				var id = document.getElementById("cart-list").rows[idx].cells[2].id;
-				var quantity = document.getElementById("cart-list").rows[idx].cells[2].getElementsByTagName('input')[0].value;
-				idx++;
-				updateToCart(id, quantity, next);
-			}
-			else {
-				location.reload();
-			}
-		}
-		next();
-	}
+    var idx = 0;
+    next = function() {
+      if (idx < cartsize) {
+        var id = document.getElementById('cart-list').rows[idx].cells[2].id;
+        var quantity = document.getElementById('cart-list').rows[idx].cells[2].getElementsByTagName('input')[0].value;
+        idx++;
+        updateToCart(id, quantity, next);
+      } else {
+        location.reload();
+      }
+    };
+    next();
+  }
 
-    $(document).ready(function () {
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
+  $(document).ready(function() {
+    $.ajaxSetup({
+      contentType: 'application/json; charset=utf-8',
+    });
 
-        $.getJSON('/cart', {}, function (data) {
-            if (data != null) {
-                var cartTotal = 0;
-                var numItemsInCart = 0;
-                var shipping = 4.99;
-                var orderPlaced = false;
-                $.each(data, function (index, element) {
-                    if (element != null && element.itemId != null && element.itemId != "null") {
-                        $.getJSON('/catalogue/' + element.itemId, function (data) {
-                            console.log(JSON.stringify(data));
-                            $('#cart-list').append(' <tr class="item">\
+    $.getJSON('/cart', {}, function(data) {
+      if (data != null) {
+        var cartTotal = 0;
+        var numItemsInCart = 0;
+        var shipping = 4.99;
+        var orderPlaced = false;
+        $.each(data, function(index, element) {
+          if (element != null && element.itemId != null && element.itemId != 'null') {
+            $.getJSON('/catalogue/' + element.itemId, function(data) {
+              console.log(JSON.stringify(data));
+              $('#cart-list').append(' <tr class="item">\
                                                 <input class="id" type="hidden" value="' + data.id + '">\
                                                 <td>\
                                                     <a href="#">\
@@ -391,77 +403,80 @@ _________________________________________________________ -->
                                                     <a href="#" onclick="deleteFromCart(\'' + data.id + '\')"><i class="fa fa-trash-o"></i></a>\
                                                 </td>\
                                             </tr>');
-                            cartTotal = cartTotal + element.quantity * data.price;
-                            console.log("Cur total: " + cartTotal);
-                            numItemsInCart = numItemsInCart + element.quantity;
-                        }).always(function () {
-                            console.log("Final counts: $" + cartTotal + ", with " + numItemsInCart + " items.");
-                            $('#orderButton').prop('disabled', false);
-                            if ($('p#address').text() === 'No address saved for user.' || $('p#number').text() === 'No credit card saved for user.') {
-                                $('#orderButton').click(function(event) {
-                                    event.stopPropagation();
-                                    event.preventDefault();
-                                    $("#user-message").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> Could not place order. Missing shipping or payment information.</div>');
-                                    return false;
-                                });
-                            } else {
-                                $('#orderButton').click(function(event) {
-                                    if (orderPlaced == false) {
-                                      orderPlaced = true;
-                                      return order();
-				    }
-                                });
-                            }
-                            $('#numItemsInCart').text('You currently have ' + numItemsInCart + ' item(s) in your cart.');
-                            $('#cartTotal').text('$' + cartTotal.toFixed(2));
-                            $('#orderSubtotal').text('$' + cartTotal.toFixed(2));
-                            $('#orderShipping').text('$' + shipping.toFixed(2));
-                            $('#orderGrandTotal').text('$' + (cartTotal + shipping).toFixed(2));
-                        });
-                    }
+              cartTotal = cartTotal + element.quantity * data.price;
+              console.log('Cur total: ' + cartTotal);
+              numItemsInCart = numItemsInCart + element.quantity;
+            }).always(function() {
+              console.log('Final counts: $' + cartTotal + ', with ' + numItemsInCart + ' items.');
+              $('#orderButton').prop('disabled', false);
+              if ($('p#address').text() === 'No address saved for user.' || $('p#number').text() ===
+                  'No credit card saved for user.') {
+                $('#orderButton').click(function(event) {
+                  event.stopPropagation();
+                  event.preventDefault();
+                  $('#user-message').
+                      html(
+                          '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> Could not place order. Missing shipping or payment information.</div>');
+                  return false;
                 });
-
-            }
+              } else {
+                $('#orderButton').click(function(event) {
+                  if (orderPlaced == false) {
+                    orderPlaced = true;
+                    return order();
+                  }
+                });
+              }
+              $('#numItemsInCart').text('You currently have ' + numItemsInCart + ' item(s) in your cart.');
+              $('#cartTotal').text('$' + cartTotal.toFixed(2));
+              $('#orderSubtotal').text('$' + cartTotal.toFixed(2));
+              $('#orderShipping').text('$' + shipping.toFixed(2));
+              $('#orderGrandTotal').text('$' + (cartTotal + shipping).toFixed(2));
+            });
+          }
         });
 
-        $.getJSON('/card', function(data) {
-            if (data.status_code !== 500) {
-                $("p#number").text("Card ending in " + data.number).css("color", "black");
-                $("#add_payment").hide();
-            } else {
-                $("p#number").text("No credit card saved for user.").css("color", "red");
-                $("#add_payment").show();
-            }
-        });
+      }
+    });
 
-        $.getJSON('/address', function(data) {
-            if (data.status_code !== 500) {
-                var text = data.number + " ";
-                text += data.street
-                text += "</br>";
-                text += data.city;
-                text += "</br>";
-                text += data.postcode;
-                text += "</br>";
-                text += data.country;
-                $("p#address").html(text).css("color", "black");
-                $("#add_shipping").hide();
-            } else {
-                $("p#address").text("No address saved for user.").css("color", "red");
-                $("#add_shipping").show();
-            }
-        });
+    $.getJSON('/card', function(data) {
+      if (data.status_code !== 500) {
+        $('p#number').text('Card ending in ' + data.number).css('color', 'black');
+        $('#add_payment').hide();
+      } else {
+        $('p#number').text('No credit card saved for user.').css('color', 'red');
+        $('#add_payment').show();
+      }
+    });
 
-        $.getJSON('/catalogue', {size: 3}, function (data) {
-            if (data != null) {
-                $.each(data, function (index, element) {
-                    $('#youMayAlsoLike').append(
-                            '<div class="col-md-3 col-sm-6">\
-                                <div class="product same-height">\
-                                    <div class="flip-container">\
-                                        <div class="flipper">\
-                                            <div class="front">\
-                                                <a href="detail.html?id=' + element.id + '">\
+    $.getJSON('/address', function(data) {
+      if (data.status_code !== 500) {
+        var text = data.number + ' ';
+        text += data.street;
+        text += '</br>';
+        text += data.city;
+        text += '</br>';
+        text += data.postcode;
+        text += '</br>';
+        text += data.country;
+        $('p#address').html(text).css('color', 'black');
+        $('#add_shipping').hide();
+      } else {
+        $('p#address').text('No address saved for user.').css('color', 'red');
+        $('#add_shipping').show();
+      }
+    });
+
+    $.getJSON('/catalogue', {size: 3}, function(data) {
+      if (data != null) {
+        $.each(data, function(index, element) {
+          $('#youMayAlsoLike').append(
+              '<div class="col-md-3 col-sm-6">\
+                  <div class="product same-height">\
+                      <div class="flip-container">\
+                          <div class="flipper">\
+                              <div class="front">\
+                                  <a href="detail.html?id=' + element.id + '">\
                                                     <img src="' + element.imageUrl[0] + '" alt="" class="img-responsive">\
                                                 </a>\
                                             </div>\
@@ -480,14 +495,14 @@ _________________________________________________________ -->
                                         <p class="price">$' + element.price + '</p>\
                                     </div>\
                                 </div>\
-                            </div>'
-                    );
-                });
-            }
-        }).always(
-                $(window).trigger('resize')
-        );
-    });
+                            </div>',
+          );
+        });
+      }
+    }).always(
+        $(window).trigger('resize'),
+    );
+  });
 
 </script>
 
