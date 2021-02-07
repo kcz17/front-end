@@ -22,6 +22,7 @@
     customersUrl: util.format("http://user%s/customers", domain),
     addressUrl: util.format("http://user%s/addresses", domain),
     cardsUrl: util.format("http://user%s/cards", domain),
+    newsUrl: util.format("http://news%s/news", domain),
     loginUrl: util.format("http://user%s/login", domain),
     registerUrl: util.format("http://user%s/register", domain),
   };
