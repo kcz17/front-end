@@ -1,39 +1,42 @@
-(function (){
-  'use strict';
+(function () {
+  "use strict";
 
-  var async     = require("async")
-    , express   = require("express")
-    , request   = require("request")
-    , helpers   = require("../../helpers")
-    , endpoints = require("../endpoints")
-    , app       = express()
+  var async = require("async"),
+    express = require("express"),
+    request = require("request"),
+    helpers = require("../../helpers"),
+    endpoints = require("../endpoints"),
+    app = express();
 
   // List items in cart for current logged in user.
   app.get("/cart", function (req, res, next) {
     console.log("Request received: " + req.url + ", " + req.query.custId);
     var custId = helpers.getCustomerId(req, app.get("env"));
     console.log("Customer ID: " + custId);
-    request(endpoints.cartsUrl + "/" + custId + "/items", function (error, response, body) {
-      if (error) {
-        return next(error);
+    request(
+      endpoints.cartsUrl + "/" + custId + "/items",
+      function (error, response, body) {
+        if (error) {
+          return next(error);
+        }
+        helpers.respondStatusBody(res, response.statusCode, body);
       }
-      helpers.respondStatusBody(res, response.statusCode, body)
-    });
+    );
   });
 
   // Delete cart
   app.delete("/cart", function (req, res, next) {
     var custId = helpers.getCustomerId(req, app.get("env"));
-    console.log('Attempting to delete cart for user: ' + custId);
+    console.log("Attempting to delete cart for user: " + custId);
     var options = {
       uri: endpoints.cartsUrl + "/" + custId,
-      method: 'DELETE'
+      method: "DELETE",
     };
     request(options, function (error, response, body) {
       if (error) {
         return next(error);
       }
-      console.log('User cart deleted with status: ' + response.statusCode);
+      console.log("User cart deleted with status: " + response.statusCode);
       helpers.respondStatus(res, response.statusCode);
     });
   });
@@ -49,14 +52,19 @@
     var custId = helpers.getCustomerId(req, app.get("env"));
 
     var options = {
-      uri: endpoints.cartsUrl + "/" + custId + "/items/" + req.params.id.toString(),
-      method: 'DELETE'
+      uri:
+        endpoints.cartsUrl +
+        "/" +
+        custId +
+        "/items/" +
+        req.params.id.toString(),
+      method: "DELETE",
     };
     request(options, function (error, response, body) {
       if (error) {
         return next(error);
       }
-      console.log('Item deleted with status: ' + response.statusCode);
+      console.log("Item deleted with status: " + response.statusCode);
       helpers.respondStatus(res, response.statusCode);
     });
   });
@@ -72,44 +80,57 @@
 
     var custId = helpers.getCustomerId(req, app.get("env"));
 
-    async.waterfall([
+    async.waterfall(
+      [
         function (callback) {
-          request(endpoints.catalogueUrl + "/catalogue/" + req.body.id.toString(), function (error, response, body) {
-            console.log(body);
-            callback(error, JSON.parse(body));
-          });
+          request(
+            endpoints.catalogueUrl + "/catalogue/" + req.body.id.toString(),
+            function (error, response, body) {
+              console.log(body);
+              callback(error, JSON.parse(body));
+            }
+          );
         },
         function (item, callback) {
           var options = {
             uri: endpoints.cartsUrl + "/" + custId + "/items",
-            method: 'POST',
+            method: "POST",
             json: true,
-            body: {itemId: item.id, unitPrice: item.price}
+            body: { itemId: item.id, unitPrice: item.price },
           };
-          console.log("POST to carts: " + options.uri + " body: " + JSON.stringify(options.body));
+          console.log(
+            "POST to carts: " +
+              options.uri +
+              " body: " +
+              JSON.stringify(options.body)
+          );
           request(options, function (error, response, body) {
             if (error) {
-              callback(error)
-                return;
+              callback(error);
+              return;
             }
             callback(null, response.statusCode);
           });
+        },
+      ],
+      function (err, statusCode) {
+        if (err) {
+          return next(err);
         }
-    ], function (err, statusCode) {
-      if (err) {
-        return next(err);
+        if (statusCode != 201) {
+          return next(
+            new Error("Unable to add to cart. Status code: " + statusCode)
+          );
+        }
+        helpers.respondStatus(res, statusCode);
       }
-      if (statusCode != 201) {
-        return next(new Error("Unable to add to cart. Status code: " + statusCode))
-      }
-      helpers.respondStatus(res, statusCode);
-    });
+    );
   });
 
-// Update cart item
+  // Update cart item
   app.post("/cart/update", function (req, res, next) {
     console.log("Attempting to update cart item: " + JSON.stringify(req.body));
-    
+
     if (req.body.id == null) {
       next(new Error("Must pass id of item to update"), 400);
       return;
@@ -120,39 +141,56 @@
     }
     var custId = helpers.getCustomerId(req, app.get("env"));
 
-    async.waterfall([
+    async.waterfall(
+      [
         function (callback) {
-          request(endpoints.catalogueUrl + "/catalogue/" + req.body.id.toString(), function (error, response, body) {
-            console.log(body);
-            callback(error, JSON.parse(body));
-          });
+          request(
+            endpoints.catalogueUrl + "/catalogue/" + req.body.id.toString(),
+            function (error, response, body) {
+              console.log(body);
+              callback(error, JSON.parse(body));
+            }
+          );
         },
         function (item, callback) {
           var options = {
             uri: endpoints.cartsUrl + "/" + custId + "/items",
-            method: 'PATCH',
+            method: "PATCH",
             json: true,
-            body: {itemId: item.id, quantity: parseInt(req.body.quantity), unitPrice: item.price}
+            body: {
+              itemId: item.id,
+              quantity: parseInt(req.body.quantity),
+              unitPrice: item.price,
+            },
           };
-          console.log("PATCH to carts: " + options.uri + " body: " + JSON.stringify(options.body));
+          console.log(
+            "PATCH to carts: " +
+              options.uri +
+              " body: " +
+              JSON.stringify(options.body)
+          );
           request(options, function (error, response, body) {
             if (error) {
-              callback(error)
-                return;
+              callback(error);
+              return;
             }
             callback(null, response.statusCode);
           });
+        },
+      ],
+      function (err, statusCode) {
+        if (err) {
+          return next(err);
         }
-    ], function (err, statusCode) {
-      if (err) {
-        return next(err);
+        if (statusCode != 202) {
+          return next(
+            new Error("Unable to add to cart. Status code: " + statusCode)
+          );
+        }
+        helpers.respondStatus(res, statusCode);
       }
-      if (statusCode != 202) {
-        return next(new Error("Unable to add to cart. Status code: " + statusCode))
-      }
-      helpers.respondStatus(res, statusCode);
-    });
+    );
   });
-  
+
   module.exports = app;
-}());
+})();
