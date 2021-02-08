@@ -13,6 +13,7 @@ var request = require("request"),
   orders = require("./api/orders"),
   user = require("./api/user"),
   news = require("./api/news"),
+  recommender = require("./api/recommender")
   metrics = require("./api/metrics"),
   app = express();
 
@@ -49,6 +50,7 @@ app.use(catalogue);
 app.use(orders);
 app.use(news);
 app.use(user);
+app.use(recommender);
 
 app.use(helpers.errorHandler);
 

@@ -1,7 +1,7 @@
-(function (){
-  'use strict';
+(function () {
+  "use strict";
 
-  var util = require('util');
+  var util = require("util");
 
   var domain = "";
   process.argv.forEach(function (val, index, array) {
@@ -25,5 +25,6 @@
     newsUrl: util.format("http://news%s/news", domain),
     loginUrl: util.format("http://user%s/login", domain),
     registerUrl: util.format("http://user%s/register", domain),
+    recommenderUrl: util.format("http://recommender%s/recommender", domain),
   };
-}());
+})();
