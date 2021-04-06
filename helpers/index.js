@@ -40,15 +40,12 @@
    * body       - (string) the body to yield to the response
    */
   helpers.respondStatusBody = function(res, statusCode, body) {
-    res.writeHeader(statusCode);
-    res.write(body);
-    res.end();
+    res.status(statusCode).send(body);
   }
 
   /* Responds with the given statusCode */
   helpers.respondStatus = function(res, statusCode) {
-    res.writeHeader(statusCode);
-    res.end();
+    res.status(statusCode).send();
   }
 
   /* Rewrites and redirects any url that doesn't end with a slash. */
