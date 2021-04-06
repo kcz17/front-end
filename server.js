@@ -4,6 +4,7 @@ var request = require("request"),
   path = require("path"),
   bodyParser = require("body-parser"),
   async = require("async"),
+  cookieParser = require("cookie-parser"),
   session = require("express-session"),
   config = require("./config"),
   helpers = require("./helpers"),
@@ -28,6 +29,7 @@ if (process.env.SESSION_REDIS) {
 }
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(helpers.sessionMiddleware);
 app.use(morgan("dev", {}));
 
