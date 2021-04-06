@@ -11,7 +11,6 @@ var request = require("request"),
   app = express();
 
 app.use(helpers.rewriteSlash);
-app.use(metrics);
 app.use(express.static("public"));
 if (process.env.SESSION_REDIS) {
   console.log("Using the redis based session manager");
@@ -44,7 +43,6 @@ require("./api/orders")(app);
 require("./api/user")(app);
 require("./api/news")(app);
 require("./api/recommender")(app);
-require("./api/metrics")(app);
 
 app.use(helpers.errorHandler);
 
