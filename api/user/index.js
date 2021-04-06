@@ -1,14 +1,10 @@
-(function () {
-  "use strict";
+const async = require("async"),
+  request = require("request"),
+  endpoints = require("../endpoints"),
+  helpers = require("../../helpers"),
+  cookie_name = "logged_in";
 
-  var async = require("async"),
-    express = require("express"),
-    request = require("request"),
-    endpoints = require("../endpoints"),
-    helpers = require("../../helpers"),
-    app = express(),
-    cookie_name = "logged_in";
-
+module.exports = function (app) {
   app.get("/customers/:id", function (req, res, next) {
     helpers.simpleHttpRequest(
       endpoints.customersUrl + "/" + req.session.customerId,
@@ -382,6 +378,4 @@
       }
     );
   });
-
-  module.exports = app;
-})();
+};

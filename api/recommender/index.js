@@ -1,15 +1,8 @@
-(function () {
-  "use strict";
+const endpoints = require("../endpoints"),
+  helpers = require("../../helpers");
 
-  var express = require("express"),
-    request = require("request"),
-    endpoints = require("../endpoints"),
-    helpers = require("../../helpers"),
-    app = express();
-
+module.exports = function (app) {
   app.get("/recommender", function (req, res, next) {
     helpers.simpleHttpRequest(endpoints.recommenderUrl, res, next);
   });
-
-  module.exports = app;
-})();
+};

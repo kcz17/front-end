@@ -8,13 +8,6 @@ var request = require("request"),
   session = require("express-session"),
   config = require("./config"),
   helpers = require("./helpers"),
-  cart = require("./api/cart"),
-  catalogue = require("./api/catalogue"),
-  orders = require("./api/orders"),
-  user = require("./api/user"),
-  news = require("./api/news"),
-  recommender = require("./api/recommender")
-  metrics = require("./api/metrics"),
   app = express();
 
 app.use(helpers.rewriteSlash);
@@ -45,12 +38,13 @@ process.argv.forEach(function (val, index, array) {
 });
 
 /* Mount API endpoints */
-app.use(cart);
-app.use(catalogue);
-app.use(orders);
-app.use(news);
-app.use(user);
-app.use(recommender);
+require("./api/cart")(app);
+require("./api/catalogue")(app);
+require("./api/orders")(app);
+require("./api/user")(app);
+require("./api/news")(app);
+require("./api/recommender")(app);
+require("./api/metrics")(app);
 
 app.use(helpers.errorHandler);
 

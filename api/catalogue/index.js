@@ -1,12 +1,8 @@
-(function () {
-  "use strict";
+const request = require("request"),
+  endpoints = require("../endpoints"),
+  helpers = require("../../helpers");
 
-  var express = require("express"),
-    request = require("request"),
-    endpoints = require("../endpoints"),
-    helpers = require("../../helpers"),
-    app = express();
-
+module.exports = function (app) {
   app.get("/catalogue/images*", function (req, res, next) {
     var url = endpoints.catalogueUrl + req.url.toString();
     request
@@ -28,6 +24,4 @@
   app.get("/tags", function (req, res, next) {
     helpers.simpleHttpRequest(endpoints.tagsUrl, res, next);
   });
-
-  module.exports = app;
-})();
+};

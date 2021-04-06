@@ -1,13 +1,9 @@
-(function () {
-  "use strict";
+const async = require("async"),
+  request = require("request"),
+  endpoints = require("../endpoints"),
+  helpers = require("../../helpers");
 
-  var async = require("async"),
-    express = require("express"),
-    request = require("request"),
-    endpoints = require("../endpoints"),
-    helpers = require("../../helpers"),
-    app = express();
-
+module.exports = function (app) {
   app.get("/orders", function (req, res, next) {
     console.log("Request received with body: " + JSON.stringify(req.body));
     var logged_in = req.cookies.logged_in;
@@ -164,6 +160,4 @@
       }
     );
   });
-
-  module.exports = app;
-})();
+};

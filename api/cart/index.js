@@ -1,13 +1,9 @@
-(function () {
-  "use strict";
+const async = require("async"),
+  request = require("request"),
+  helpers = require("../../helpers"),
+  endpoints = require("../endpoints");
 
-  var async = require("async"),
-    express = require("express"),
-    request = require("request"),
-    helpers = require("../../helpers"),
-    endpoints = require("../endpoints"),
-    app = express();
-
+module.exports = function (app) {
   // List items in cart for current logged in user.
   app.get("/cart", function (req, res, next) {
     console.log("Request received: " + req.url + ", " + req.query.custId);
@@ -191,6 +187,4 @@
       }
     );
   });
-
-  module.exports = app;
-})();
+};

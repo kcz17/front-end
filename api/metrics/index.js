@@ -1,22 +1,19 @@
-(function () {
-  "use strict";
-  const apiRoutes = ["cart", "catalogue", "orders", "user"];
-  var express = require("express"),
-    client = require("prom-client"),
-    app = express();
+const apiRoutes = ["cart", "catalogue", "orders", "user"];
+const client = require("prom-client");
 
-  const metric = {
-    http: {
-      requests: {
-        duration: new client.Histogram(
-          "http_request_duration_seconds",
-          "request duration in seconds",
-          ["service", "method", "path", "status_code"]
-        ),
-      },
+const metric = {
+  http: {
+    requests: {
+      duration: new client.Histogram(
+        "http_request_duration_seconds",
+        "request duration in seconds",
+        ["service", "method", "path", "status_code"]
+      ),
     },
-  };
+  },
+};
 
+module.exports = function (app) {
   function s(start) {
     var diff = process.hrtime(start);
     return (diff[0] * 1e9 + diff[1]) / 1000000000;
@@ -52,6 +49,4 @@
     res.header("content-type", "text/plain");
     return res.end(client.register.metrics());
   });
-
-  module.exports = app;
-})();
+};
